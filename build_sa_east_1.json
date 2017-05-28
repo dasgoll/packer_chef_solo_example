@@ -1,0 +1,30 @@
+
+{
+  "variables": {
+    "aws_access_key": "",
+    "aws_secret_key": ""
+  },
+  "builders": [{
+    "type": "amazon-ebs",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_key`}}",
+    "region": "sa-east-1",
+    "source_ami": "ami-37cfad5b",
+    "instance_type": "t2.micro",
+    "ssh_username": "ec2-user",
+    "ami_name": "mybaseimage-{{timestamp}}"
+  }],
+
+"provisioners": [{
+
+    "type": "chef-solo",
+
+    "cookbook_paths": ["cookbooks"],
+    "run_list": ["dwh_ftp_server"]
+
+}]
+}
+
+
+
+
