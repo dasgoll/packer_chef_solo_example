@@ -1,0 +1,19 @@
+{
+  "builders": [{
+    "type": "amazon-ebs",
+    "region": "ap-northeast-1",
+    "source_ami": "ami-3561fe34",
+    "instance_type": "c3.xlarge",
+    "ssh_username": "ec2-user",
+    "ssh_timeout": "5m",
+    "ami_name": "amznlinux-{{timestamp}}"
+  }],
+  "provisioners": [{
+    "type": "chef-solo",
+    "cookbook_paths": ["./vendor-cookbooks/"],
+    "run_list": ["timezone", "apache2", "memcached"],
+    "json": {"memcached":{"maxcon":"512","cachesize":"512"}},
+    "prevent_sudo": false,
+    "skip_install": false
+  }]
+}
