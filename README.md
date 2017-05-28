@@ -8,5 +8,5 @@ installation
 ============
  1. install berkshelf
  2. create Berksfile
- 3. berks install --path=vendor-cookbooks
- 4. packer build amazonlinux.json
+ 3. berks vendor vendor-cookbooks
+ 4. packer build build_sa_east_1.json
